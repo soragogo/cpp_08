@@ -40,21 +40,44 @@ int main() {
 
     std::cout << CYAN << "\n=== Copy Constructor & Assignment Test ===" << END << std::endl;
 
-    // コピーコンストラクタとコピー代入演算子のテスト
     MutantStack<int> copy_stack(mstack);
     std::cout << "Copied stack size: " << copy_stack.size() << std::endl;
     std::cout << "Copied stack top: " << copy_stack.top() << std::endl;
+
+    if  (mstack.size() == 5 && mstack.top() == 23) {
+        std::cout << GREEN << "OK" << END << std::endl;
+    } else {
+        std::cout << RED << "KO" << END << std::endl;
+    }
 
     MutantStack<int> assigned_stack;
     assigned_stack = mstack;
     std::cout << "Assigned stack size: " << assigned_stack.size() << std::endl;
     std::cout << "Assigned stack top: " << assigned_stack.top() << std::endl;
 
-    // 元のスタックを変更しても、コピーには影響しないことを確認
+    if  (mstack.size() == 5 && mstack.top() == 23) {
+        std::cout << GREEN << "OK" << END << std::endl;
+    } else {
+        std::cout << RED << "KO" << END << std::endl;
+    }
+
     mstack.push(999);
     std::cout << "Original stack size after push: " << mstack.size() << std::endl;
     std::cout << "Copied stack size: " << copy_stack.size() << std::endl;
+    std::cout << "Assigned stack size: " << assigned_stack.size() << std::endl;
 
+    if  (mstack.size() == 6 && copy_stack.size() == 5 && assigned_stack.size() == 5) {
+        std::cout << GREEN << "OK" << END << std::endl;
+    } else {
+        std::cout << RED << "KO" << END << std::endl;
+    }
+
+    std::cout << CYAN << "\n=== Iterator Test ===" << END << std::endl;
+    MutantStack<int>::iterator it = mstack.begin();
+    MutantStack<int>::iterator ite = mstack.end();
+    for (; it != ite; ++it) {
+        std::cout << *it << std::endl;
+    }
 
 
     return 0;
