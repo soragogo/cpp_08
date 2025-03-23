@@ -9,18 +9,15 @@ class MutantStack : public std::stack<T> {
 public:
     MutantStack() : std::stack<T>() {};
     ~MutantStack();
-    MutantStack(MutantStack & ms) : std::stack<T>(ms) {};
-    MutantStack & operator=(MutantStack & ms);
+    MutantStack(MutantStack const & ms) : std::stack<T>(ms) {};
+    MutantStack & operator=(MutantStack const & ms);
 
-    typedef typename std::stack<T> stack;
+    typedef std::stack<T> stack;
     typedef typename stack::container_type container;
     typedef typename container::iterator iterator;
 
-    MutantStack<T>::iterator begin();
-    MutantStack<T>::iterator end();
-    MutantStack<T>::iterator rbegin();
-    MutantStack<T>::iterator rend();
-
+    typename MutantStack<T>::iterator begin();
+    typename MutantStack<T>::iterator end();
 
 private:
 
@@ -32,9 +29,9 @@ MutantStack<T>::~MutantStack() {}
 
 
 template <typename T>
-MutantStack<T> & MutantStack<T>::operator=(MutantStack & ms) {
+MutantStack<T> & MutantStack<T>::operator=(MutantStack const & ms) {
     if (this != &ms) {
-        stack::operator=(ms);
+        std::stack<T>::operator=(ms);
     }
     return *this;
 }
@@ -47,14 +44,6 @@ typename MutantStack<T>::iterator MutantStack<T>::begin() {
 template <typename T>
 typename MutantStack<T>::iterator MutantStack<T>::end() {
     return this->c.end();
-}
-template <typename T>
-typename MutantStack<T>::iterator MutantStack<T>::rbegin() {
-    return this->c.rbegin();
-}
-template <typename T>
-typename MutantStack<T>::iterator MutantStack<T>::rend() {
-    return this->c.rend();
 }
 
 # define END             "\033[0m"
