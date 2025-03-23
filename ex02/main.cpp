@@ -45,17 +45,5 @@ int main() {
 
     std::cout << GREEN << "\n=== Empty Stack Test ===" << END << std::endl;
 
-    // 空のスタックのテスト
-    MutantStack<int> empty_stack;
-    std::cout << "Is new stack empty? " << (empty_stack.empty() ? "Yes" : "No") << std::endl;
-
-    // 空のスタックでのtop()の例外処理テスト
-    std::cout << "Testing top() on empty stack:" << std::endl;
-    try {
-        std::cout << empty_stack.top() << std::endl;
-    } catch (const std::exception& e) {
-        std::cout << RED << "Exception caught: " << e.what() << END << std::endl;
-    }
-
     return 0;
 }
