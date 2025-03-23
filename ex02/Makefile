@@ -11,10 +11,6 @@ OBJDIR=objs
 OBJS=$(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 
 
-ifeq ($(MAKECMDGOALS), debug)
-	CXXFLAGS += -g -fsanitize=address
-endif
-
 all:$(NAME)
 
 $(NAME):$(OBJS)
@@ -33,6 +29,8 @@ fclean:clean
 re:fclean
 	make all
 
-debug: re
+debug: CXXFLAGS += -g -O0 -fsanitize=address
+debug: fclean all
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 .PHONY:		clean fclean all re debug
