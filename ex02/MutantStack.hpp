@@ -4,82 +4,58 @@
 #include <stack>
 
 template <typename T>
-class MutantStack : public std::stack {
+class MutantStack : public std::stack<T> {
 
 public:
-    MutantStack() : std::stack<T>;
+    MutantStack() : std::stack<T>() {};
     ~MutantStack();
-    MutantStack(MutantStack & ms) : std::stack<T>(ms);
+    MutantStack(MutantStack & ms) : std::stack<T>(ms) {};
     MutantStack & operator=(MutantStack & ms);
 
-    bool empty();
-    void pop();
-    void push(T elem);
-    size_t size();
-    T & top();
-    std::
+    typedef typename std::stack<T> stack;
+    typedef typename stack::container_type container;
+    typedef typename container::iterator iterator;
 
-    class iterator<T> {
-        std::iterator<T>  begin();
-        std::iterator<T> end();
-        //prefix
-        std::MutantStack<T>::iterator operator++();
-        std::MutantStack<T>::iterator operator--();
+    MutantStack<T>::iterator begin();
+    MutantStack<T>::iterator end();
+    MutantStack<T>::iterator rbegin();
+    MutantStack<T>::iterator rend();
 
-        //postfix
-        std::MutantStack<T>::iterator operator++(T);
-        std::MutantStack<T>::iterator operator--(T);
-    }
 
 private:
 
 };
 
-template <typename T>
-MutantStack<T>::MutantStack() {}
 
 template <typename T>
 MutantStack<T>::~MutantStack() {}
 
-template <typename T>
-MutantStack<T>::MutantStack(MutantStack & ms) {
-}
 
 template <typename T>
 MutantStack<T> & MutantStack<T>::operator=(MutantStack & ms) {
-    if (*this != ms) {
-        std::stack<T>::operator=(ms);
+    if (this != &ms) {
+        stack::operator=(ms);
     }
     return *this;
 }
 
 
 template <typename T>
-bool MutantStack<T>::empty() {
-    return std::stuck<T>::empty();
+typename MutantStack<T>::iterator MutantStack<T>::begin() {
+    return this->c.begin();
 }
-
 template <typename T>
-void MutantStack<T>::pop() {
-    return std::stuck<T>::pop();
+typename MutantStack<T>::iterator MutantStack<T>::end() {
+    return this->c.end();
 }
-
 template <typename T>
-void MutantStack<T>::push(T elem) {
-    return std::stuck<T>::push(elem);
+typename MutantStack<T>::iterator MutantStack<T>::rbegin() {
+    return this->c.rbegin();
 }
-
 template <typename T>
-size_t MutantStack<T>::size() {
-    return std::stuck<T>::size();
+typename MutantStack<T>::iterator MutantStack<T>::rend() {
+    return this->c.rend();
 }
-
-template <typename T>
-T & MutantStack<T>::top() {
-    return std::stuck<T>::top();
-}
-
-
 
 # define END             "\033[0m"
 # define BOLD            "\033[1m"
