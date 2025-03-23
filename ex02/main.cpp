@@ -19,6 +19,12 @@ int main() {
     std::cout << "Stack size: " << mstack.size() << std::endl;
     std::cout << "Top element: " << mstack.top() << std::endl;
 
+    if  (mstack.size() == 6 && mstack.top() == 0) {
+        std::cout << GREEN << "OK" << END << std::endl;
+    } else {
+        std::cout << RED << "KO" << END << std::endl;
+    }
+
     std::cout << "Popping top element" << std::endl;
     mstack.pop();
     std::cout << "New size: " << mstack.size() << std::endl;
@@ -26,7 +32,13 @@ int main() {
 
     std::cout << "Is stack empty? " << (mstack.empty() ? "Yes" : "No") << std::endl;
 
-    std::cout << GREEN << "\n=== Copy Constructor & Assignment Test ===" << END << std::endl;
+    if  (mstack.size() == 5 && mstack.top() == 23) {
+        std::cout << GREEN << "OK" << END << std::endl;
+    } else {
+        std::cout << RED << "KO" << END << std::endl;
+    }
+
+    std::cout << CYAN << "\n=== Copy Constructor & Assignment Test ===" << END << std::endl;
 
     // コピーコンストラクタとコピー代入演算子のテスト
     MutantStack<int> copy_stack(mstack);
@@ -43,7 +55,7 @@ int main() {
     std::cout << "Original stack size after push: " << mstack.size() << std::endl;
     std::cout << "Copied stack size: " << copy_stack.size() << std::endl;
 
-    std::cout << GREEN << "\n=== Empty Stack Test ===" << END << std::endl;
+
 
     return 0;
 }
