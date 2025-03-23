@@ -64,7 +64,7 @@ void errorHandlingTest() {
 }
 
 void largeNumbersTest() {
-    const int SIZE = 10000;
+    const int SIZE = 30000;
     Span sp = Span(SIZE);
 
     std::srand(std::time(NULL));
@@ -89,6 +89,8 @@ void specialCasesTest() {
     std::cout << "Span with extreme values:" << std::endl;
     std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
     std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+    if (sp.shortestSpan() != 10 || sp.longestSpan() != long(INT_MAX) - long(INT_MIN))
+        throw std::runtime_error("Incorrect span values for extreme numbers");
 }
 
 void copyTest() {

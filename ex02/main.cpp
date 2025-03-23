@@ -8,14 +8,16 @@ int main() {
 
     MutantStack<int> mstack;
 
-    std::cout << "Pushing elements: 12, 1, 3, 12, 23, 0" << std::endl;
-    mstack.push(12);
-    mstack.push(1);
+    std::cout << "Pushing elements: 5, 17, 3, 5, 737, 0" << std::endl;
+    mstack.push(5);
+    mstack.push(17);
     mstack.push(3);
-    mstack.push(12);
-    mstack.push(23);
+    mstack.push(5);
+    mstack.push(737);
     mstack.push(0);
 
+
+    
     std::cout << "Stack size: " << mstack.size() << std::endl;
     std::cout << "Top element: " << mstack.top() << std::endl;
 
@@ -32,7 +34,7 @@ int main() {
 
     std::cout << "Is stack empty? " << (mstack.empty() ? "Yes" : "No") << std::endl;
 
-    if  (mstack.size() == 5 && mstack.top() == 23) {
+    if  (mstack.size() == 5 && mstack.top() == 737) {
         std::cout << GREEN << "OK" << END << std::endl;
     } else {
         std::cout << RED << "KO" << END << std::endl;
@@ -44,7 +46,7 @@ int main() {
     std::cout << "Copied stack size: " << copy_stack.size() << std::endl;
     std::cout << "Copied stack top: " << copy_stack.top() << std::endl;
 
-    if  (mstack.size() == 5 && mstack.top() == 23) {
+    if  (mstack.size() == 5 && mstack.top() == 737) {
         std::cout << GREEN << "OK" << END << std::endl;
     } else {
         std::cout << RED << "KO" << END << std::endl;
@@ -55,7 +57,7 @@ int main() {
     std::cout << "Assigned stack size: " << assigned_stack.size() << std::endl;
     std::cout << "Assigned stack top: " << assigned_stack.top() << std::endl;
 
-    if  (mstack.size() == 5 && mstack.top() == 23) {
+    if  (mstack.size() == 5 && mstack.top() == 737) {
         std::cout << GREEN << "OK" << END << std::endl;
     } else {
         std::cout << RED << "KO" << END << std::endl;
@@ -75,6 +77,9 @@ int main() {
     std::cout << CYAN << "\n=== Iterator Test ===" << END << std::endl;
     MutantStack<int>::iterator it = mstack.begin();
     MutantStack<int>::iterator ite = mstack.end();
+    ++it;
+    --it;
+    
     for (; it != ite; ++it) {
         std::cout << *it << std::endl;
     }
