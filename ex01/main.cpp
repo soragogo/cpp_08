@@ -14,7 +14,6 @@ void runTest(const std::string& testName, void (*testFunc)()) {
     }
 }
 
-// 基本的な機能テスト
 void basicTest() {
     Span sp = Span(5);
 
@@ -27,16 +26,13 @@ void basicTest() {
     std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
     std::cout << "Longest span: " << sp.longestSpan() << std::endl;
 
-    // 期待値チェック
     if (sp.shortestSpan() != 2 || sp.longestSpan() != 14)
         throw std::runtime_error("Incorrect span values");
 }
 
-// エラーハンドリングテスト
 void errorHandlingTest() {
     Span sp = Span(3);
 
-    // 空のSpanでのspanチェック
     try {
         std::cout << "Testing empty span..." << std::endl;
         Span emptySp(5);
@@ -46,7 +42,6 @@ void errorHandlingTest() {
         std::cout << "Correctly caught exception for empty span" << std::endl;
     }
 
-    // 要素一つでのspanチェック
     try {
         std::cout << "Testing span with one element..." << std::endl;
         Span oneSp(5);
@@ -57,7 +52,6 @@ void errorHandlingTest() {
         std::cout << "Correctly caught exception for span with one element" << std::endl;
     }
 
-    // 容量を超えたaddNumber
     try {
         std::cout << "Testing capacity limit..." << std::endl;
         sp.addNumber(1);
@@ -70,13 +64,11 @@ void errorHandlingTest() {
     }
 }
 
-// 10,000個の数字をテスト
 void largeNumbersTest() {
     const int SIZE = 10000;
     Span sp = Span(SIZE);
 
-    // ランダムな数字を追加
-    std::srand(std::time(nullptr));
+    std::srand(std::time(NULL));
     for (int i = 0; i < SIZE; i++) {
         sp.addNumber(std::rand() % 1000000);
     }
@@ -86,7 +78,6 @@ void largeNumbersTest() {
     std::cout << "Longest span: " << sp.longestSpan() << std::endl;
 }
 
-// 特殊なケースのテスト（負の数、大きな数など）
 void specialCasesTest() {
     Span sp = Span(5);
 
@@ -101,19 +92,16 @@ void specialCasesTest() {
     std::cout << "Longest span: " << sp.longestSpan() << std::endl;
 }
 
-// コピーコンストラクタとオペレータのテスト
 void copyTest() {
     Span original = Span(5);
     original.addNumber(1);
     original.addNumber(3);
     original.addNumber(5);
 
-    // コピーコンストラクタのテスト
     Span copy(original);
     if (copy.shortestSpan() != original.shortestSpan())
         throw std::runtime_error("Copy constructor failed");
 
-    // 代入演算子のテスト
     Span assigned = Span(10);
     assigned = original;
     if (assigned.longestSpan() != original.longestSpan())
