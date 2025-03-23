@@ -27,7 +27,7 @@ void Span::addNumber(int const & num) {
 }
 
 long Span::shortestSpan() {
-    if (_v.size() == 0 || _v.capacity() == 0)
+    if (_v.size() <= 1 || _v.capacity() <= 1)
         throw std::invalid_argument("Add a number first.");
     long ans = long(INT_MAX) - long(INT_MIN);
     std::vector<int> tmp = _v;
