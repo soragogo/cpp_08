@@ -2,7 +2,6 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
-#include "Span.hpp"
 
 void runTest(const std::string& testName, void (*testFunc)()) {
     std::cout << YELLOW << "\n=== " << testName << " ===" << END << std::endl;
@@ -57,7 +56,7 @@ void errorHandlingTest() {
         sp.addNumber(1);
         sp.addNumber(2);
         sp.addNumber(3);
-        sp.addNumber(4); // この時点で例外が発生するはず
+        sp.addNumber(4);
         throw std::runtime_error("Should have thrown exception for exceeding capacity");
     } catch (const std::length_error&) {
         std::cout << "Correctly caught exception for exceeding capacity" << std::endl;
@@ -70,7 +69,7 @@ void largeNumbersTest() {
 
     std::srand(std::time(NULL));
     for (int i = 0; i < SIZE; i++) {
-        sp.addNumber(std::rand() % 1000000);
+        sp.addNumber(std::rand() % 10000);
     }
 
     std::cout << "Added " << SIZE << " random numbers" << std::endl;
@@ -82,9 +81,9 @@ void specialCasesTest() {
     Span sp = Span(5);
 
     sp.addNumber(-10);
-    sp.addNumber(5);
-    sp.addNumber(0);
     sp.addNumber(INT_MAX);
+    sp.addNumber(45);
+    sp.addNumber(0);
     sp.addNumber(INT_MIN);
 
     std::cout << "Span with extreme values:" << std::endl;
